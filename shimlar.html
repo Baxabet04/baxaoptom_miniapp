@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kepkalar — BaxaOptom</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="miniapp-header">
+    <h1>🧢 Kepkalar</h1>
+  </header>
+
+  <main class="product-grid">
+    <!-- Chegirmasiz mahsulot -->
+    <div class="product-card">
+      <img src="images/kepka1.jpg" alt="Qora klassik kepka">
+      <h2>Qora Klassik Kepka</h2>
+      <p class="description">Klassik ko‘rinish, har qanday kiyimga mos.</p>
+      <p class="price">79,000 so‘m</p>
+      <button class="add-btn">➕ Savatchaga</button>
+    </div>
+
+    <!-- Chegirmali mahsulot -->
+    <div class="product-card">
+      <div class="badge">🔥 Chegirma</div>
+      <img src="images/kepka2.jpg" alt="Sport uslubdagi kepka">
+      <h2>Sport Uslubdagi Kepka</h2>
+      <p class="description">Yengil va qulay, sport uslubni sevuvchilar uchun.</p>
+      <p class="price" data-original="89000">89,000 so‘m</p>
+      <p class="discount" data-discount="69000">Chegirma: 69,000 so‘m</p>
+      <p class="percent"></p>
+      <button class="add-btn">➕ Savatchaga</button>
+    </div>
+
+    <!-- Chegirmali mahsulot -->
+    <div class="product-card">
+      <div class="badge">🔥 Chegirma</div>
+      <img src="images/kepka3.jpg" alt="Minimalist oq kepka">
+      <h2>Minimalist Oq Kepka</h2>
+      <p class="description">Oq rangli, toza dizayn. Yozgi uslub uchun ideal.</p>
+      <p class="price" data-original="75000">75,000 so‘m</p>
+      <p class="discount" data-discount="60000">Chegirma: 60,000 so‘m</p>
+      <p class="percent"></p>
+      <button class="add-btn">➕ Savatchaga</button>
+    </div>
+  </main>
+
+  <footer class="miniapp-footer">
+    <nav>
+      <a href="index.html">🏠 Asosiy</a>
+      <a href="katalog.html" class="active">📦 Katalog</a>
+      <a href="savatcha.html">🛒 Savatcha</a>
+      <a href="sevimli.html">❤️ Sevimli</a>
+      <a href="profil.html">👤 Profil</a>
+    </nav>
+  </footer>
+
+  <!-- Chegirma foizini hisoblovchi JS -->
+  <script>
+    document.querySelectorAll('.product-card').forEach(card => {
+      const priceEl = card.querySelector('.price');
+      const discountEl = card.querySelector('.discount');
+      const percentEl = card.querySelector('.percent');
+
+      if (priceEl && discountEl && percentEl) {
+        const original = parseInt(priceEl.dataset.original);
+        const discount = parseInt(discountEl.dataset.discount);
+
+        if (original > discount) {
+          const percent = Math.round((original - discount) / original * 100);
+          percentEl.textContent = `💸 ${percent}% chegirma`;
+          percentEl.style.color = '#d32f2f';
+          percentEl.style.fontWeight = 'bold';
+          percentEl.style.marginBottom = '10px';
+        }
+      }
+    });
+  </script>
+</body>
+</html>

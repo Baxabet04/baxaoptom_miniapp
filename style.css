@@ -1,61 +1,187 @@
+/* Umumiy uslub */
 body {
-  font-family: sans-serif;
+  font-family: 'Poppins', sans-serif;
   margin: 0;
   padding: 0;
   background: #f9f9f9;
+  color: #333;
 }
 
-header {
+/* Header */
+header, .miniapp-header {
   background: #222;
   color: #fff;
-  padding: 15px;
+  padding: 20px;
   text-align: center;
+  font-size: 24px;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-.products {
+/* Logotip */
+.logo-container {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+}
+
+.logo-img {
+  height: 40px;
+  margin-right: 10px;
+}
+
+.logo-text {
+  font-size: 1.5rem;
+  color: #333;
+}
+
+/* Katalog grid */
+.catalog-grid, .product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 20px;
   padding: 20px;
 }
 
-.product {
-  background: #fff;
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+/* Kategoriya banner */
+.category-banner {
+  margin: 24px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease;
+  background-color: #fff;
+}
+
+.category-banner:hover {
+  transform: scale(1.02);
+}
+
+.banner-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.banner-content {
   text-align: center;
+  background: linear-gradient(to bottom right, #ffffff, #f0f0f0);
+  padding: 16px;
 }
 
-.product img {
+.banner-content h2 {
+  font-size: 22px;
+  margin-bottom: 12px;
+}
+
+.banner-content img {
   width: 100%;
-  max-width: 300px;
-  border-radius: 6px;
+  height: auto;
+  display: block;
 }
 
-button {
-  background: #007bff;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  margin-top: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.bottom-menu {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  background: #fff;
+/* Pastki menyu */
+.bottom-menu, .miniapp-footer nav {
   display: flex;
   justify-content: space-around;
-  padding: 10px 0;
-  box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+  padding: 15px;
+  background-color: #fff;
+  border-top: 1px solid #ddd;
 }
 
-.bottom-menu button {
-  background: none;
+.bottom-menu a, .miniapp-footer a {
+  text-decoration: none;
+  color: #555;
+  font-size: 1rem;
+}
+
+.bottom-menu a.active, .miniapp-footer a.active {
+  color: #000;
+  font-weight: bold;
+}
+
+/* Mahsulot kartasi */
+.product-card {
+  position: relative;
+  background-color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  text-align: center;
+  padding: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+  transform: scale(1.02);
+}
+
+.product-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.product-card h2 {
+  font-size: 1.1rem;
+  margin: 12px 0 6px;
+  color: #333;
+}
+
+.description {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.price {
+  font-weight: bold;
+  color: #007b5e;
+  margin-bottom: 6px;
+}
+
+.discount {
+  font-weight: bold;
+  color: #d32f2f;
+  font-size: 0.95rem;
+  margin-bottom: 6px;
+}
+
+.percent {
+  font-size: 0.9rem;
+  color: #d32f2f;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Chegirma belgisi */
+.badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background-color: #d32f2f;
+  color: #fff;
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  border-radius: 4px;
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* Tugma */
+.add-btn {
+  background-color: #007b5e;
+  color: #fff;
   border: none;
-  font-size: 16px;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease;
+}
+
+.add-btn:hover {
+  background-color: #005f47;
 }

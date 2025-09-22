@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Poyabzallar — BaxaOptom</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="miniapp-header">
+    <h1>👞 Poyabzallar</h1>
+  </header>
+
+  <main class="product-grid">
+    <!-- Chegirmasiz mahsulot -->
+    <div class="product-card">
+      <img src="images/poyabzal1.jpg" alt="Klassik charm tufli">
+      <h2>Klassik Charm Tufli</h2>
+      <p class="description">Ofis va tantanali holatlar uchun zamonaviy ko‘rinish.</p>
+      <p class="price">249,000 so‘m</p>
+      <button class="add-btn">➕ Savatchaga</button>
+    </div>
+
+    <!-- Chegirmali mahsulot -->
+    <div class="product-card">
+      <div class="badge">🔥 Chegirma</div>
+      <img src="images/poyabzal2.jpg" alt="Sport uslubdagi krossovka">
+      <h2>Sport Uslubdagi Krossovka</h2>
+      <p class="description">Yengil va qulay, kundalik yurish uchun ideal.</p>
+      <p class="price" data-original="199000">199,000 so‘m</p>
+      <p class="discount" data-discount="159000">Chegirma: 159,000 so‘m</p>
+      <p class="percent"></p>
+      <button class="add-btn">➕ Savatchaga</button>
+    </div>
+
+    <!-- Chegirmali mahsulot -->
+    <div class="product-card">
+      <div class="badge">🔥 Chegirma</div>
+      <img src="images/poyabzal3.jpg" alt="Yengil yozgi mokasin">
+      <h2>Yengil Yozgi Mokasin</h2>
+      <p class="description">Yozgi ob-havo uchun nafas oluvchi charm mokasin.</p>
+      <p class="price" data-original="179000">179,000 so‘m</p>
+      <p class="discount" data-discount="139000">Chegirma: 139,000 so‘m</p>
+      <p class="percent"></p>
+      <button class="add-btn">➕ Savatchaga</button>
+    </div>
+  </main>
+
+  <footer class="miniapp-footer">
+    <nav>
+      <a href="index.html">🏠 Asosiy</a>
+      <a href="katalog.html" class="active">📦 Katalog</a>
+      <a href="savatcha.html">🛒 Savatcha</a>
+      <a href="sevimli.html"❤️ Sevimli</a>
+      <a href="profil.html">👤 Profil</a>
+    </nav>
+  </footer>
+
+  <!-- Chegirma foizini hisoblovchi JS -->
+  <script>
+    document.querySelectorAll('.product-card').forEach(card => {
+      const priceEl = card.querySelector('.price');
+      const discountEl = card.querySelector('.discount');
+      const percentEl = card.querySelector('.percent');
+
+      if (priceEl && discountEl && percentEl) {
+        const original = parseInt(priceEl.dataset.original);
+        const discount = parseInt(discountEl.dataset.discount);
+
+        if (original > discount) {
+          const percent = Math.round((original - discount) / original * 100);
+          percentEl.textContent = `💸 ${percent}% chegirma`;
+          percentEl.style.color = '#d32f2f';
+          percentEl.style.fontWeight = 'bold';
+          percentEl.style.marginBottom = '10px';
+        }
+      }
+    });
+  </script>
+</body>
+</html>

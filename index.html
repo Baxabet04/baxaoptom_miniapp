@@ -3,37 +3,58 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BaxaOptom Katalog</title>
+  <title>BaxaOptom — Erkaklar kiyimlari katalogi</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
-    <h1>🛍 BaxaOptom Katalog</h1>
+    <div class="logo-container">
+      <img src="images/baxaoptom-logo.png" alt="BaxaOptom logotipi" class="logo-img">
+      <h1 class="logo-text">🛍 Barcha Kategoriyalar</h1>
+    </div>
   </header>
 
-  <section class="products">
-    <div class="product">
-      <img src="https://via.placeholder.com/300x300.png?text=dvoykalar" alt="dvoykalar">
-      <h3>dvoykalar hitoy</h3>
-      <p>280 000 so‘m</p>
-      <button>🛒 Xarid qilish</button>
-    </div>
+  <main class="catalog-grid">
+    <!-- Kepkalar -->
+    <section class="category-banner">
+      <a href="kepkalar.html" class="banner-link">
+        <div class="banner-content">
+          <h2>🧢 Kepkalar</h2>
+          <img src="images/kepka-banner.jpg" alt="Kepkalar kategoriyasi uchun banner">
+        </div>
+      </a>
+    </section>
 
-    <div class="product">
-      <img src="https://via.placeholder.com/300x300.png?text=Ovalar+Abayasi" alt="kattalr uchun">
-      <h3>kattalar uchun</h3>
-      <p>240 000 so‘m</p>
-      <button>🛒 Xarid qilish</button>
-    </div>
-  </section>
+    <!-- Shimlar -->
+    <section class="category-banner">
+      <a href="shimlar.html" class="banner-link">
+        <div class="banner-content">
+          <h2>👖 Shimlar</h2>
+          <img src="images/shim-banner.jpg" alt="Shimlar kategoriyasi uchun banner">
+        </div>
+      </a>
+    </section>
 
-  <nav class="bottom-menu">
-    <button>🏠 Asosiy</button>
-    <button>📦 Katalog</button>
-    <button>🛒 Savatcha</button>
-    <button>❤️ Sevimli</button>
-    <button>👤 Profil</button>
-  </nav>
+    <!-- Futbolkalar -->
+    <section class="category-banner">
+      <a href="futbolkalar.html" class="banner-link">
+        <div class="banner-content">
+          <h2>👕 Futbolkalar</h2>
+          <img src="images/futbolka-banner.jpg" alt="Futbolkalar kategoriyasi uchun banner">
+        </div>
+      </a>
+    </section>
+  </main>
+
+  <footer>
+    <nav class="bottom-menu">
+      <a href="index.html">🏠 Asosiy</a>
+      <a href="katalog.html" class="active">📦 Katalog</a>
+      <a href="savatcha.html">🛒 Savatcha</a>
+      <a href="sevimli.html">❤️ Sevimli</a>
+      <a href="profil.html">👤 Profil</a>
+    </nav>
+  </footer>
 
   <script src="script.js"></script>
 </body>
