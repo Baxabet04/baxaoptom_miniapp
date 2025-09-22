@@ -3,19 +3,33 @@ body {
   font-family: 'Poppins', sans-serif;
   margin: 0;
   padding: 0;
-  background: #f9f9f9;
+  background: linear-gradient(to bottom right, #f9f9f9, #eaeaea);
   color: #333;
+  transition: background 0.3s ease;
+}
+
+/* Animatsiyalar */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
 }
 
 /* Header */
 header, .miniapp-header {
-  background: #222;
+  background: linear-gradient(to right, #222, #333);
   color: #fff;
   padding: 20px;
   text-align: center;
-  font-size: 24px;
-  font-weight: 600;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  font-size: 26px;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  animation: fadeIn 0.6s ease;
 }
 
 /* Logotip */
@@ -25,115 +39,64 @@ header, .miniapp-header {
   padding: 20px;
   background-color: #fff;
   border-bottom: 1px solid #ddd;
+  animation: fadeIn 0.8s ease;
 }
 
 .logo-img {
-  height: 40px;
-  margin-right: 10px;
+  height: 44px;
+  margin-right: 12px;
 }
 
 .logo-text {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   color: #333;
+  font-weight: 600;
 }
 
 /* Katalog grid */
 .catalog-grid, .product-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-  padding: 20px;
-}
-
-/* Kategoriya banner */
-.category-banner {
-  margin: 24px;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  transition: transform 0.3s ease;
-  background-color: #fff;
-}
-
-.category-banner:hover {
-  transform: scale(1.02);
-}
-
-.banner-link {
-  text-decoration: none;
-  color: inherit;
-  display: block;
-}
-
-.banner-content {
-  text-align: center;
-  background: linear-gradient(to bottom right, #ffffff, #f0f0f0);
-  padding: 16px;
-}
-
-.banner-content h2 {
-  font-size: 22px;
-  margin-bottom: 12px;
-}
-
-.banner-content img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-/* Pastki menyu */
-.bottom-menu, .miniapp-footer nav {
-  display: flex;
-  justify-content: space-around;
-  padding: 15px;
-  background-color: #fff;
-  border-top: 1px solid #ddd;
-}
-
-.bottom-menu a, .miniapp-footer a {
-  text-decoration: none;
-  color: #555;
-  font-size: 1rem;
-}
-
-.bottom-menu a.active, .miniapp-footer a.active {
-  color: #000;
-  font-weight: bold;
+  gap: 24px;
+  padding: 24px;
+  animation: fadeIn 1s ease;
 }
 
 /* Mahsulot kartasi */
 .product-card {
   position: relative;
   background-color: #fff;
-  border-radius: 12px;
+  border-radius: 14px;
   overflow: hidden;
   text-align: center;
-  padding: 16px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  transition: transform 0.3s ease;
+  padding: 18px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeIn 1.2s ease;
 }
 
 .product-card:hover {
   transform: scale(1.02);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
 }
 
 .product-card img {
   width: 100%;
   height: auto;
-  border-radius: 8px;
+  border-radius: 10px;
 }
 
+/* Matnlar */
 .product-card h2 {
-  font-size: 1.1rem;
-  margin: 12px 0 6px;
-  color: #333;
+  font-size: 1.2rem;
+  margin: 14px 0 8px;
+  color: #222;
 }
 
 .description {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   color: #666;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 .price {
@@ -145,7 +108,7 @@ header, .miniapp-header {
 .discount {
   font-weight: bold;
   color: #d32f2f;
-  font-size: 0.95rem;
+  font-size: 1rem;
   margin-bottom: 6px;
 }
 
@@ -159,13 +122,13 @@ header, .miniapp-header {
 /* Chegirma belgisi */
 .badge {
   position: absolute;
-  top: 12px;
-  left: 12px;
+  top: 14px;
+  left: 14px;
   background-color: #d32f2f;
   color: #fff;
-  padding: 4px 10px;
-  font-size: 0.75rem;
-  border-radius: 4px;
+  padding: 5px 12px;
+  font-size: 0.8rem;
+  border-radius: 6px;
   font-weight: 600;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
@@ -175,13 +138,40 @@ header, .miniapp-header {
   background-color: #007b5e;
   color: #fff;
   border: none;
-  padding: 10px 16px;
-  border-radius: 6px;
+  padding: 12px 18px;
+  border-radius: 8px;
   cursor: pointer;
-  font-size: 0.9rem;
-  transition: background-color 0.2s ease;
+  font-size: 1rem;
+  transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
 .add-btn:hover {
   background-color: #005f47;
+  animation: pulse 0.4s ease;
+}
+
+.add-btn:active {
+  transform: scale(0.97);
+}
+
+/* Pastki menyu */
+.bottom-menu, .miniapp-footer nav {
+  display: flex;
+  justify-content: space-around;
+  padding: 16px;
+  background-color: #fff;
+  border-top: 1px solid #ddd;
+  animation: fadeIn 1.4s ease;
+}
+
+.bottom-menu a, .miniapp-footer a {
+  text-decoration: none;
+  color: #555;
+  font-size: 1rem;
+  transition: color 0.2s ease;
+}
+
+.bottom-menu a.active, .miniapp-footer a.active {
+  color: #000;
+  font-weight: bold;
 }

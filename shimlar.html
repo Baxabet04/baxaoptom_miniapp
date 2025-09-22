@@ -3,32 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kepkalar — BaxaOptom</title>
+  <title>Shimlar — BaxaOptom</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header class="miniapp-header">
-    <h1>🧢 Kepkalar</h1>
+    <h1>👖 Shimlar</h1>
   </header>
 
   <main class="product-grid">
     <!-- Chegirmasiz mahsulot -->
     <div class="product-card">
-      <img src="images/kepka1.jpg" alt="Qora klassik kepka">
-      <h2>Qora Klassik Kepka</h2>
-      <p class="description">Klassik ko‘rinish, har qanday kiyimga mos.</p>
-      <p class="price">79,000 so‘m</p>
+      <img src="images/shim1.jpg" alt="Klassik qora shim">
+      <h2>Klassik Qora Shim</h2>
+      <p class="description">Ofis va kundalik kiyim uchun mos, zamonaviy kesim.</p>
+      <p class="price">139,000 so‘m</p>
       <button class="add-btn">➕ Savatchaga</button>
     </div>
 
     <!-- Chegirmali mahsulot -->
     <div class="product-card">
       <div class="badge">🔥 Chegirma</div>
-      <img src="images/kepka2.jpg" alt="Sport uslubdagi kepka">
-      <h2>Sport Uslubdagi Kepka</h2>
-      <p class="description">Yengil va qulay, sport uslubni sevuvchilar uchun.</p>
-      <p class="price" data-original="89000">89,000 so‘m</p>
-      <p class="discount" data-discount="69000">Chegirma: 69,000 so‘m</p>
+      <img src="images/shim2.jpg" alt="Sport uslubdagi shim">
+      <h2>Sport Uslubdagi Shim</h2>
+      <p class="description">Yengil, elastik materialdan. Harakat uchun qulay.</p>
+      <p class="price" data-original="159000">159,000 so‘m</p>
+      <p class="discount" data-discount="119000">Chegirma: 119,000 so‘m</p>
       <p class="percent"></p>
       <button class="add-btn">➕ Savatchaga</button>
     </div>
@@ -36,11 +36,11 @@
     <!-- Chegirmali mahsulot -->
     <div class="product-card">
       <div class="badge">🔥 Chegirma</div>
-      <img src="images/kepka3.jpg" alt="Minimalist oq kepka">
-      <h2>Minimalist Oq Kepka</h2>
-      <p class="description">Oq rangli, toza dizayn. Yozgi uslub uchun ideal.</p>
-      <p class="price" data-original="75000">75,000 so‘m</p>
-      <p class="discount" data-discount="60000">Chegirma: 60,000 so‘m</p>
+      <img src="images/shim3.jpg" alt="Yozgi oq shim">
+      <h2>Yozgi Oq Shim</h2>
+      <p class="description">Yozgi ob-havo uchun ideal, nafas oluvchi mato.</p>
+      <p class="price" data-original="129000">129,000 so‘m</p>
+      <p class="discount" data-discount="99000">Chegirma: 99,000 so‘m</p>
       <p class="percent"></p>
       <button class="add-btn">➕ Savatchaga</button>
     </div>
@@ -76,6 +76,13 @@
         }
       }
     });
+  </script>
+
+  <!-- Telegram Web App JS -->
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <script>
+    const tg = window.Telegram.WebApp;
+    tg.expand();
   </script>
 </body>
 </html>
