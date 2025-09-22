@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mahsulotlar — Admin Panel</title>
+  <link rel="stylesheet" href="admin-style.css">
+</head>
+<body>
+  <header class="admin-header">
+    <h1>📦 Mahsulotlar Ro‘yxati</h1>
+    <p>Har bir mahsulotni tahrirlash va boshqarish</p>
+  </header>
+
+  <main class="product-admin-grid">
+    <div class="product-card-admin" data-id="1">
+      <img src="images/shim1.jpg" alt="Klassik Qora Shim">
+      <h2>Klassik Qora Shim</h2>
+      <p class="price">139,000 so‘m</p>
+      <div class="admin-actions">
+        <button class="edit-btn">✏️ Tahrirlash</button>
+        <button class="delete-btn">🗑 O‘chirish</button>
+      </div>
+    </div>
+
+    <div class="product-card-admin" data-id="2">
+      <img src="images/shim2.jpg" alt="Sport Shim">
+      <h2>Sport Uslubdagi Shim</h2>
+      <p class="price">159,000 so‘m → <span class="discount">119,000 so‘m</span></p>
+      <div class="admin-actions">
+        <button class="edit-btn">✏️ Tahrirlash</button>
+        <button class="delete-btn">🗑 O‘chirish</button>
+      </div>
+    </div>
+
+    <!-- Yana mahsulotlar qo‘shiladi -->
+  </main>
+
+  <footer class="admin-footer">
+    <nav>
+      <a href="admin.html">📊 Statistika</a>
+      <a href="#">➕ Mahsulot Qo‘shish</a>
+      <a href="#">⚙️ Sozlamalar</a>
+    </nav>
+  </footer>
+
+  <script>
+    // Keyinchalik tahrirlash/o‘chirish tugmalarini backendga bog‘laymiz
+    console.log("Mahsulotlar sahifasi yuklandi");
+  </script>
+</body>
+</html>

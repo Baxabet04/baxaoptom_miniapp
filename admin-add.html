@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mahsulot Qo‘shish — Admin Panel</title>
+  <link rel="stylesheet" href="admin-style.css">
+</head>
+<body>
+  <header class="admin-header">
+    <h1>➕ Yangi Mahsulot Qo‘shish</h1>
+    <p>Mahsulotni to‘liq ma’lumot bilan kiritish</p>
+  </header>
+
+  <main class="form-section">
+    <form class="add-form">
+      <label>📷 Rasm URL:</label>
+      <input type="text" placeholder="images/shim3.jpg" required>
+
+      <label>🏷 Mahsulot nomi:</label>
+      <input type="text" placeholder="Yozgi Oq Shim" required>
+
+      <label>💰 Narxi (so‘m):</label>
+      <input type="number" placeholder="129000" required>
+
+      <label>🔻 Chegirma narxi (ixtiyoriy):</label>
+      <input type="number" placeholder="99000">
+
+      <label>📁 Kategoriya:</label>
+      <select required>
+        <option value="">Tanlang</option>
+        <option value="shimlar">Shimlar</option>
+        <option value="koftalar">Koftalar</option>
+        <option value="kepkalar">Kepkalar</option>
+        <option value="palto">Palto</option>
+      </select>
+
+      <button type="submit" class="add-btn">➕ Qo‘shish</button>
+    </form>
+  </main>
+
+  <footer class="admin-footer">
+    <nav>
+      <a href="admin.html">📊 Statistika</a>
+      <a href="admin-products.html">📦 Mahsulotlar</a>
+      <a href="admin-settings.html">⚙️ Sozlamalar</a>
+    </nav>
+  </footer>
+
+  <script>
+    document.querySelector('.add-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      alert("✅ Mahsulot muvaffaqiyatli qo‘shildi (test rejimi)");
+
+      const form = e.target;
+      const inputs = form.querySelectorAll('input');
+      const product = {
+        image: inputs[0].value,
+        title: inputs[1].value,
+        price: parseInt(inputs[2].value),
+        discount: inputs[3].value ? parseInt(inputs[3].value) : null,
+        category: form.querySelector('select').value
+      };
+
+      fetch('http://127.0.0.1:5000/products/add', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(product)
+      })
+      .then(res => res.json())
+      .then(data => {
+        alert("✅ Mahsulot backendga yozildi!");
+        form.reset();
+      })
+      .catch(err => {
+        alert("❌ Xatolik yuz berdi: " + err);
+      });
+    });
+  </script>
+</body>
+</html>
