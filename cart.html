@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Savat — BaxaOptom</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- 🔙 Ortga tugmasi -->
+  <button class="back-btn" onclick="history.back()">⬅️ Ortga</button>
+
+  <!-- 🛒 Savatcha sarlavhasi -->
+  <h2 class="cart-title">Savat</h2>
+
+  <!-- 🔧 Tanlash tugmalari -->
+  <div class="cart-actions">
+    <button onclick="selectAll()">Barchasini tanlash</button>
+    <button onclick="deleteSelected()">Tanlanganlarni o‘chirish</button>
+  </div>
+
+  <!-- 📦 Mahsulotlar ro‘yxati -->
+  <div class="cart-list">
+    <div class="cart-item">
+      <input type="checkbox">
+      <div class="cart-info">
+        <h3>Shim qora</h3>
+        <p>Razmer: 48</p>
+        <p>Narx: 199,000 UZS</p>
+        <p>Soni: 1 dona</p>
+      </div>
+    </div>
+
+    <!-- Yana mahsulotlar qo‘shiladi -->
+  </div>
+
+  <!-- 💰 Umumiy narx -->
+  <div class="cart-summary">
+    <p>1 ta mahsulot: 199,000 UZS</p>
+    <p>Umumiy narx: 199,000 UZS</p>
+  </div>
+
+  <!-- 💳 To‘lovga o‘tish -->
+  <button class="checkout-btn" onclick="window.location.href='checkout.html'">To‘lovga o‘tish</button>
+
+  <!-- 🧭 Pastki menyu -->
+  <div class="bottom-nav">
+    <a href="index.html">🏠 Bosh sahifa</a>
+    <a href="category.html">📦 Katalog</a>
+    <a href="cart.html">🛒 Savat</a>
+    <a href="favorites.html">❤️ Sevimlilar</a>
+    <a href="profile.html">👤 Profil</a>
+  </div>
+
+  <!-- 🧠 JS funksiyalar -->
+  <script>
+    function selectAll() {
+      document.querySelectorAll('.cart-item input[type="checkbox"]').forEach(cb => cb.checked = true);
+    }
+
+    function deleteSelected() {
+      alert("Tanlangan mahsulotlar o‘chirildi");
+      // Keyinchalik script.js orqali real o‘chirish yoziladi
+    }
+  </script>
+
+</body>
+</html>

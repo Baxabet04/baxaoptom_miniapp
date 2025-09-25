@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mahsulot — BaxaOptom</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- 🔙 Ortga tugmasi -->
+  <button class="back-btn" onclick="history.back()">⬅️ Ortga</button>
+
+  <!-- 🧾 Mahsulot rasmi -->
+  <div class="product-image">
+    <img src="images/shim1.jpg" alt="Shim qora">
+  </div>
+
+  <!-- 📦 Mahsulot tafsilotlari -->
+  <div class="product-details">
+    <h2>Shim qora</h2>
+    <p class="price">Narx: 199,000 UZS</p>
+
+    <!-- 📐 Razmer tanlash -->
+    <label for="size">Razmer tanlang:</label>
+    <select id="size">
+      <option value="46">46</option>
+      <option value="48">48</option>
+      <option value="50">50</option>
+      <option value="52">52</option>
+    </select>
+
+    <!-- 📊 Qolgan va sotilgan soni -->
+    <p>Qolgan: 12 dona</p>
+    <p>Sotilgan: 38 dona</p>
+
+    <!-- 💬 Sharhlar -->
+    <div class="reviews">
+      <h3>Sharhlar</h3>
+      <p>Sharh yo‘q</p>
+    </div>
+
+    <!-- 🛒 Sotib olish -->
+    <button class="buy-btn" onclick="addToCart()">Sotib olish</button>
+  </div>
+
+  <!-- 🧭 Pastki menyu -->
+  <div class="bottom-nav">
+    <a href="index.html">🏠 Bosh sahifa</a>
+    <a href="category.html">📦 Katalog</a>
+    <a href="cart.html">🛒 Savat</a>
+    <a href="favorites.html">❤️ Sevimlilar</a>
+    <a href="profile.html">👤 Profil</a>
+  </div>
+
+  <!-- 🧠 JS funksiyasi -->
+  <script>
+    function addToCart() {
+      alert("Mahsulot savatchaga qo‘shildi!");
+      // Keyinchalik savatchaga qo‘shish funksiyasi script.js orqali yoziladi
+    }
+  </script>
+
+</body>
+</html>

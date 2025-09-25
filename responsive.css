@@ -1,0 +1,102 @@
+/* 📱 Ekran 430px dan kichik bo‘lsa (iPhone SE, 13 mini, Android mini) */
+@media screen and (max-width: 430px) {
+  .search-bar input {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .banner-text h2 {
+    font-size: 16px;
+  }
+
+  .banner-text button {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+
+  .carousel-title {
+    font-size: 16px;
+    margin: 12px;
+  }
+
+  .product-card {
+    min-width: 120px;
+    padding: 8px;
+  }
+
+  .product-card img {
+    height: 90px;
+  }
+
+  .product-card h3 {
+    font-size: 14px;
+  }
+
+  .product-card p {
+    font-size: 13px;
+  }
+
+  .product-card button {
+    font-size: 12px;
+    padding: 5px 8px;
+  }
+
+  .product-item img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .product-info h3 {
+    font-size: 15px;
+  }
+
+  .product-info p {
+    font-size: 13px;
+  }
+
+  .product-info button {
+    font-size: 12px;
+    padding: 5px 8px;
+  }
+
+  .cart-actions button,
+  .checkout-btn,
+  .confirm-btn {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+
+  .bottom-nav a {
+    font-size: 12px;
+  }
+
+  .back-btn {
+    font-size: 14px;
+    padding: 6px 10px;
+  }
+}
+
+/* 📱 Ekran 320px dan kichik bo‘lsa (iPhone 5, eski Android) */
+@media screen and (max-width: 320px) {
+  .product-card {
+    min-width: 100px;
+  }
+
+  .product-card img {
+    height: 80px;
+  }
+
+  .product-card h3,
+  .product-card p {
+    font-size: 12px;
+  }
+
+  .product-card button {
+    font-size: 11px;
+    padding: 4px 6px;
+  }
+
+  .bottom-nav a {
+    font-size: 11px;
+  }
+}
