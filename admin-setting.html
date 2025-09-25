@@ -9,19 +9,35 @@
 <body>
   <header class="admin-header">
     <h1>⚙️ Sozlamalar</h1>
-    <p>Brend, to‘lov va kategoriya boshqaruvi</p>
+    <p>Brend, to‘lov, til va kategoriya boshqaruvi</p>
   </header>
 
   <main class="form-section">
     <form class="settings-form">
       <label>🏷 Brend nomi:</label>
-      <input type="text" placeholder="BaxaOptom" required>
+      <input type="text" id="brand_name" placeholder="BaxaOptom" required>
 
       <label>💳 Karta raqami:</label>
-      <input type="text" placeholder="8600 XXXX XXXX XXXX" required>
+      <input type="text" id="card_number" placeholder="8600 XXXX XXXX XXXX" required>
+
+      <label>🌐 Til:</label>
+      <select id="language">
+        <option value="uz">O‘zbek</option>
+        <option value="ru">Русский</option>
+        <option value="en">English</option>
+      </select>
+
+      <label>🎯 Chegirma foizi (default):</label>
+      <input type="number" id="default_discount" value="0" required>
 
       <label>📁 Kategoriya ro‘yxati (vergul bilan):</label>
-      <input type="text" placeholder="shimlar, koftalar, kepkalar, palto" required>
+      <input type="text" id="categories" placeholder="shimlar, koftalar, kepkalar, palto" required>
+
+      <label>👤 Admin Telegram ID:</label>
+      <input type="text" id="admin_telegram_id" disabled>
+
+      <label>🔗 Admin username:</label>
+      <input type="text" id="admin_username" disabled>
 
       <button type="submit" class="add-btn">💾 Saqlash</button>
     </form>
@@ -36,10 +52,45 @@
   </footer>
 
   <script>
+    // Sozlamalarni yuklash
+    fetch('http://127.0.0.1:5000/settings')
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById('brand_name').value = data.brand_name;
+        document.getElementById('card_number').value = data.card_number;
+        document.getElementById('language').value = data.language;
+        document.getElementById('default_discount').value = data.default_discount ?? 0;
+        document.getElementById('categories').value = data.categories?.join(', ') ?? '';
+        document.getElementById('admin_telegram_id').value = data.admin_telegram_id;
+        document.getElementById('admin_username').value = data.admin_username;
+      });
+
+    // Sozlamalarni saqlash
     document.querySelector('.settings-form').addEventListener('submit', function(e) {
       e.preventDefault();
-      alert("✅ Sozlamalar saqlandi (test rejimi)");
-      // Keyinchalik bu ma’lumotlar backendga yuboriladi
+
+      const settings = {
+        brand_name: document.getElementById('brand_name').value,
+        card_number: document.getElementById('card_number').value,
+        language: document.getElementById('language').value,
+        default_discount: parseInt(document.getElementById('default_discount').value),
+        categories: document.getElementById('categories').value.split(',').map(c => c.trim()),
+        admin_telegram_id: document.getElementById('admin_telegram_id').value,
+        admin_username: document.getElementById('admin_username').value
+      };
+
+      fetch('http://127.0.0.1:5000/settings/update', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(settings)
+      })
+      .then(res => res.json())
+      .then(data => {
+        alert("✅ Sozlamalar saqlandi!");
+      })
+      .catch(err => {
+        alert("❌ Xatolik: " + err);
+      });
     });
   </script>
 </body>

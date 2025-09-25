@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>📊 Admin Panel — Statistika</title>
+  <title>Statistika — BaxaOptom Admin</title>
   <link rel="stylesheet" href="admin-style.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
   <header class="admin-header">
-    <h1>📊 Statistika Paneli</h1>
-    <p>Buyurtmalar va mahsulotlar bo‘yicha umumiy ko‘rinish</p>
+    <h1>📊 Statistika</h1>
+    <p>Kunlik, haftalik, oylik va soatlik buyurtmalar</p>
   </header>
 
   <main class="chart-section">
@@ -19,7 +19,6 @@
     <canvas id="weeklyChart" height="200"></canvas>
     <canvas id="monthlyChart" height="200"></canvas>
     <canvas id="hourlyChart" height="200"></canvas>
-    <canvas id="categoryChart" height="200"></canvas>
   </main>
 
   <footer class="admin-footer">
@@ -31,16 +30,18 @@
   </footer>
 
   <script>
-    // Buyurtmalar statistikasi
     fetch('http://127.0.0.1:5000/order-list')
       .then(res => res.json())
       .then(orders => {
-        const daily = {}, weekly = {}, monthly = {}, hourly = {};
+        const daily = {};
+        const weekly = {};
+        const monthly = {};
+        const hourly = {};
 
         orders.forEach(order => {
           const date = new Date(order.timestamp);
-          const dayKey = date.toISOString().split('T')[0];
-          const weekKey = `Hafta ${getWeekNumber(date)}`;
+          const dayKey = date.toISOString().split('T')[0]; // YYYY-MM-DD
+          const weekKey = `Week ${getWeekNumber(date)}`;
           const monthKey = `${date.getFullYear()}-${date.getMonth() + 1}`;
           const hourKey = `${date.getHours()}:00`;
 
@@ -54,13 +55,6 @@
         drawChart('weeklyChart', '📆 Haftalik Buyurtmalar', weekly);
         drawChart('monthlyChart', '🗓 Oylik Buyurtmalar', monthly);
         drawChart('hourlyChart', '⏰ Soatlik Buyurtmalar', hourly);
-      });
-
-    // Mahsulot statistikasi
-    fetch('http://127.0.0.1:5000/products/stats')
-      .then(res => res.json())
-      .then(stats => {
-        drawChart('categoryChart', '📁 Toifalar bo‘yicha mahsulotlar', stats.categories);
       });
 
     function drawChart(canvasId, title, dataObj) {

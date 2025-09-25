@@ -3,80 +3,72 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mahsulot Qo‘shish — Admin Panel</title>
+  <title>📦 Mahsulotlar — Admin Panel</title>
   <link rel="stylesheet" href="admin-style.css">
 </head>
 <body>
+
   <header class="admin-header">
-    <h1>➕ Yangi Mahsulot Qo‘shish</h1>
-    <p>Mahsulotni to‘liq ma’lumot bilan kiritish</p>
+    <h1>📦 Mahsulotlar Ro‘yxati</h1>
+    <p>Barcha mahsulotlar grid ko‘rinishida</p>
   </header>
 
-  <main class="form-section">
-    <form class="add-form">
-      <label>📷 Rasm URL:</label>
-      <input type="text" placeholder="images/shim3.jpg" required>
-
-      <label>🏷 Mahsulot nomi:</label>
-      <input type="text" placeholder="Yozgi Oq Shim" required>
-
-      <label>💰 Narxi (so‘m):</label>
-      <input type="number" placeholder="129000" required>
-
-      <label>🔻 Chegirma narxi (ixtiyoriy):</label>
-      <input type="number" placeholder="99000">
-
-      <label>📁 Kategoriya:</label>
-      <select required>
-        <option value="">Tanlang</option>
-        <option value="shimlar">Shimlar</option>
-        <option value="koftalar">Koftalar</option>
-        <option value="kepkalar">Kepkalar</option>
-        <option value="palto">Palto</option>
-      </select>
-
-      <button type="submit" class="add-btn">➕ Qo‘shish</button>
-    </form>
+  <main>
+    <div class="product-admin-grid" id="productGrid">
+      <!-- Mahsulotlar JS orqali yuklanadi -->
+    </div>
   </main>
 
   <footer class="admin-footer">
     <nav>
       <a href="admin.html">📊 Statistika</a>
-      <a href="admin-products.html">📦 Mahsulotlar</a>
-      <a href="admin-settings.html">⚙️ Sozlamalar</a>
+      <a href="admin-add.html">➕ Mahsulot Qo‘shish</a>
+      <a href="admin-orders.html">🛒 Buyurtmalar</a>
+      <a href="admin-setting.html">⚙️ Sozlamalar</a>
     </nav>
   </footer>
 
   <script>
-    document.querySelector('.add-form').addEventListener('submit', function(e) {
-      e.preventDefault();
+    fetch('http://127.0.0.1:5000/products')
+      .then(res => res.json())
+      .then(products => {
+        const grid = document.getElementById('productGrid');
+        products.forEach(p => {
+          const card = document.createElement('div');
+          card.className = 'product-card-admin';
+          card.innerHTML = `
+            <img src="images/${p.image}" alt="${p.name}">
+            <h3>${p.name}</h3>
+            <p><strong>💰 Narx:</strong> ${p.price.toLocaleString()} so‘m</p>
+            <p><strong>🎯 Chegirma:</strong> ${p.discount}%</p>
+            <p><strong>📐 Razmer:</strong> ${p.sizes?.join(', ') || '-'}</p>
+            <p><strong>📁 Toifa:</strong> ${p.type}</p>
+            <p><strong>📦 Qolgan:</strong> ${p.stock} dona</p>
+            <p><strong>📊 Sotilgan:</strong> ${p.sold} dona</p>
+            <div class="admin-actions">
+              <a href="admin-edit.html?id=${p.id}" class="edit-btn">✏️ Tahrirlash</a>
+              <button class="delete-btn" onclick="deleteProduct(${p.id})">❌ O‘chirish</button>
+            </div>
+          `;
+          grid.appendChild(card);
+        });
+      });
 
-      alert("✅ Mahsulot muvaffaqiyatli qo‘shildi (test rejimi)");
-
-      const form = e.target;
-      const inputs = form.querySelectorAll('input');
-      const product = {
-        image: inputs[0].value,
-        title: inputs[1].value,
-        price: parseInt(inputs[2].value),
-        discount: inputs[3].value ? parseInt(inputs[3].value) : null,
-        category: form.querySelector('select').value
-      };
-
-      fetch('http://127.0.0.1:5000/products/add', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(product)
+    function deleteProduct(id) {
+      if (!confirm("Mahsulotni o‘chirishga ishonchingiz komilmi?")) return;
+      fetch(`http://127.0.0.1:5000/products/delete/${id}`, {
+        method: 'DELETE'
       })
       .then(res => res.json())
       .then(data => {
-        alert("✅ Mahsulot backendga yozildi!");
-        form.reset();
+        alert("✅ Mahsulot o‘chirildi!");
+        location.reload();
       })
       .catch(err => {
-        alert("❌ Xatolik yuz berdi: " + err);
+        alert("❌ O‘chirishda xatolik: " + err);
       });
-    });
+    }
   </script>
+
 </body>
 </html>

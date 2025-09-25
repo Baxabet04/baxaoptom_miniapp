@@ -3,50 +3,72 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mahsulotlar — Admin Panel</title>
+  <title>📦 Mahsulotlar — Admin Panel</title>
   <link rel="stylesheet" href="admin-style.css">
 </head>
 <body>
+
   <header class="admin-header">
     <h1>📦 Mahsulotlar Ro‘yxati</h1>
-    <p>Har bir mahsulotni tahrirlash va boshqarish</p>
+    <p>Barcha mahsulotlar grid ko‘rinishida</p>
   </header>
 
-  <main class="product-admin-grid">
-    <div class="product-card-admin" data-id="1">
-      <img src="images/shim1.jpg" alt="Klassik Qora Shim">
-      <h2>Klassik Qora Shim</h2>
-      <p class="price">139,000 so‘m</p>
-      <div class="admin-actions">
-        <button class="edit-btn">✏️ Tahrirlash</button>
-        <button class="delete-btn">🗑 O‘chirish</button>
-      </div>
+  <main>
+    <div class="product-admin-grid" id="productGrid">
+      <!-- Mahsulotlar JS orqali yuklanadi -->
     </div>
-
-    <div class="product-card-admin" data-id="2">
-      <img src="images/shim2.jpg" alt="Sport Shim">
-      <h2>Sport Uslubdagi Shim</h2>
-      <p class="price">159,000 so‘m → <span class="discount">119,000 so‘m</span></p>
-      <div class="admin-actions">
-        <button class="edit-btn">✏️ Tahrirlash</button>
-        <button class="delete-btn">🗑 O‘chirish</button>
-      </div>
-    </div>
-
-    <!-- Yana mahsulotlar qo‘shiladi -->
   </main>
 
   <footer class="admin-footer">
     <nav>
       <a href="admin.html">📊 Statistika</a>
-      <a href="#">➕ Mahsulot Qo‘shish</a>
-      <a href="#">⚙️ Sozlamalar</a>
+      <a href="admin-add.html">➕ Mahsulot Qo‘shish</a>
+      <a href="admin-orders.html">🛒 Buyurtmalar</a>
+      <a href="admin-setting.html">⚙️ Sozlamalar</a>
     </nav>
   </footer>
 
   <script>
-    // Keyinchalik tahrirlash/o‘chirish tugmalarini backendga bog‘laymiz
-    console.log("Mahsulotlar sahifasi yuklandi");
+    fetch('http://127.0.0.1:5000/products')
+      .then(res => res.json())
+      .then(products => {
+        const grid = document.getElementById('productGrid');
+        products.forEach(p => {
+          const card = document.createElement('div');
+          card.className = 'product-card-admin';
+          card.innerHTML = `
+            <img src="images/${p.image}" alt="${p.name}">
+            <h3>${p.name}</h3>
+            <p><strong>💰 Narx:</strong> ${p.price.toLocaleString()} so‘m</p>
+            <p><strong>🎯 Chegirma:</strong> ${p.discount}%</p>
+            <p><strong>📐 Razmer:</strong> ${p.sizes?.join(', ') || '-'}</p>
+            <p><strong>📁 Toifa:</strong> ${p.type}</p>
+            <p><strong>📦 Qolgan:</strong> ${p.stock} dona</p>
+            <p><strong>📊 Sotilgan:</strong> ${p.sold} dona</p>
+            <div class="admin-actions">
+              <a href="admin-edit.html?id=${p.id}" class="edit-btn">✏️ Tahrirlash</a>
+              <button class="delete-btn" onclick="deleteProduct(${p.id})">❌ O‘chirish</button>
+            </div>
+          `;
+          grid.appendChild(card);
+        });
+      });
+
+    function deleteProduct(id) {
+      if (!confirm("Mahsulotni o‘chirishga ishonchingiz komilmi?")) return;
+      fetch(`http://127.0.0.1:5000/products/delete/${id}`, {
+        method: 'DELETE'
+      })
+      .then(res => res.json())
+      .then(data => {
+        alert("✅ Mahsulot o‘chirildi!");
+        location.reload();
+      })
+      .catch(err => {
+        alert("❌ O‘chirishda xatolik: " + err);
+      });
+    }
   </script>
+
 </body>
 </html>

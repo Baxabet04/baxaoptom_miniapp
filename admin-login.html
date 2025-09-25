@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🔐 Admin Kirish — BaxaOptom</title>
+  <link rel="stylesheet" href="admin-style.css">
+  <style>
+    .login-container {
+      max-width: 400px;
+      margin: 80px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+      text-align: center;
+    }
+    .login-container h2 {
+      margin-bottom: 20px;
+      color: #007b5e;
+    }
+    .login-container input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+    .login-container button {
+      padding: 10px 20px;
+      background-color: #007b5e;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    .login-container button:hover {
+      background-color: #005f47;
+    }
+    .error-message {
+      color: #d32f2f;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-container">
+    <h2>🔐 Admin Kirish</h2>
+    <input type="text" id="username" placeholder="Foydalanuvchi nomi">
+    <input type="password" id="password" placeholder="Parol">
+    <button onclick="checkLogin()">Kirish</button>
+    <div id="error" class="error-message"></div>
+  </div>
+
+  <script>
+    function checkLogin() {
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const error = document.getElementById('error');
+
+      const correctUsername = "baxa";
+      const correctPassword = "baxa2001";
+
+      if (username === correctUsername && password === correctPassword) {
+        window.location.href = "admin.html";
+      } else {
+        error.textContent = "❌ Noto‘g‘ri foydalanuvchi nomi yoki parol.";
+      }
+    }
+  </script>
+
+</body>
+</html>

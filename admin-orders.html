@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🛒 Buyurtmalar — Admin Panel</title>
+  <link rel="stylesheet" href="admin-style.css">
+</head>
+<body>
+
+  <header class="admin-header">
+    <h1>🛒 Buyurtmalar Ro‘yxati</h1>
+    <p>Foydalanuvchilarning barcha buyurtmalari</p>
+  </header>
+
+  <main class="order-section">
+    <table>
+      <thead>
+        <tr>
+          <th>👤 Ism</th>
+          <th>📞 Raqam</th>
+          <th>📦 Mahsulotlar</th>
+          <th>📐 Razmer</th>
+          <th>💳 To‘lov</th>
+          <th>🕒 Vaqt</th>
+        </tr>
+      </thead>
+      <tbody id="order-table">
+        <!-- Buyurtmalar JS orqali yuklanadi -->
+      </tbody>
+    </table>
+  </main>
+
+  <footer class="admin-footer">
+    <nav>
+      <a href="admin.html">📊 Statistika</a>
+      <a href="admin-products.html">📦 Mahsulotlar</a>
+      <a href="admin-add.html">➕ Mahsulot Qo‘shish</a>
+      <a href="admin-setting.html">⚙️ Sozlamalar</a>
+    </nav>
+  </footer>
+
+  <script>
+    fetch('http://127.0.0.1:5000/order-list')
+      .then(res => res.json())
+      .then(orders => {
+        const table = document.getElementById('order-table');
+        orders.forEach(order => {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td>${order.name}</td>
+            <td>${order.phone}</td>
+            <td>${order.items?.join(', ') || '-'}</td>
+            <td>${order.size || '-'}</td>
+            <td>${order.payment}</td>
+            <td>${order.timestamp}</td>
+          `;
+          table.appendChild(row);
+        });
+      })
+      .catch(err => {
+        alert("❌ Buyurtmalarni yuklashda xatolik: " + err);
+      });
+  </script>
+
+</body>
+</html>

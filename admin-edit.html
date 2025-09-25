@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>✏️ Mahsulotni Tahrirlash — Admin Panel</title>
+  <link rel="stylesheet" href="admin-style.css">
+</head>
+<body>
+
+  <header class="admin-header">
+    <h1>✏️ Mahsulotni Tahrirlash</h1>
+    <p>Mahsulot avtomatik yuklanadi</p>
+  </header>
+
+  <main class="form-section">
+    <form id="editForm" class="add-form" style="display:none;">
+      <label>🏷 Nomi:</label>
+      <input type="text" id="name" required>
+
+      <label>💰 Narxi (UZS):</label>
+      <input type="number" id="price" required>
+
+      <label>🎯 Chegirma (%):</label>
+      <input type="number" id="discount" required>
+
+      <label>📐 Razmerlar (vergul bilan):</label>
+      <input type="text" id="sizes">
+
+      <label>📁 Toifa:</label>
+      <input type="text" id="type" required>
+
+      <label>🖼 Rasm nomi:</label>
+      <input type="text" id="image" required>
+
+      <label>📦 Qolgan soni (stock):</label>
+      <input type="number" id="stock" required>
+
+      <label>📊 Sotilgan soni (sold):</label>
+      <input type="number" id="sold" required>
+
+      <button type="submit">💾 Saqlash</button>
+    </form>
+  </main>
+
+  <footer class="admin-footer">
+    <nav>
+      <a href="admin.html">📊 Statistika</a>
+      <a href="admin-products.html">📦 Mahsulotlar</a>
+      <a href="admin-add.html">➕ Mahsulot Qo‘shish</a>
+      <a href="admin-setting.html">⚙️ Sozlamalar</a>
+    </nav>
+  </footer>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = parseInt(urlParams.get('id'));
+
+    fetch('http://127.0.0.1:5000/products')
+      .then(res => res.json())
+      .then(products => {
+        const product = products.find(p => p.id === id);
+        if (!product) return alert("❌ Mahsulot topilmadi");
+
+        document.getElementById('name').value = product.name;
+        document.getElementById('price').value = product.price;
+        document.getElementById('discount').value = product.discount ?? 0;
+        document.getElementById('sizes').value = product.sizes?.join(', ') ?? '';
+        document.getElementById('type').value = product.type;
+        document.getElementById('image').value = product.image;
+        document.getElementById('stock').value = product.stock;
+        document.getElementById('sold').value = product.sold;
+        document.getElementById('editForm').style.display = 'block';
+      });
+
+    document.getElementById('editForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const updated = {
+        name: document.getElementById('name').value,
+        price: parseInt(document.getElementById('price').value),
+        discount: parseInt(document.getElementById('discount').value),
+        sizes: document.getElementById('sizes').value.split(',').map(s => s.trim()),
+        type: document.getElementById('type').value,
+        image: document.getElementById('image').value,
+        stock: parseInt(document.getElementById('stock').value),
+        sold: parseInt(document.getElementById('sold').value)
+      };
+
+      fetch(`http://127.0.0.1:5000/products/update/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updated)
+      })
+      .then(res => res.json())
+      .then(data => {
+        alert("✅ Mahsulot yangilandi!");
+        window.location.href = "admin-products.html";
+      })
+      .catch(err => {
+        alert("❌ Tahrirlashda xatolik: " + err);
+      });
+    });
+  </script>
+
+</body>
+</html>
