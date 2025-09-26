@@ -1,37 +1,82 @@
-from aiogram import Bot, Dispatcher, types
-from aiogram.types import KeyboardButton, ReplyKeyboardMarkup, WebAppInfo
-from aiogram.utils import executor
-import logging
+<<<<<<< HEAD
+import telebot
+import requests
 
-# 🔐 Bot token
+# 🔐 Telegram bot sozlamalari
 BOT_TOKEN = "8409191752:AAEgPddZfKIGrFHOSfBnY6OfQTCk3aRHMzo"
+ADMIN_CHAT_ID = "5167278754"  # Dostonbek — Azamov.B
 
-# 🔧 Loglar
-logging.basicConfig(level=logging.INFO)
+# 🌐 Backend URL (Render.com’dagi)
+BACKEND_URL = "https://baxaoptom-backend.onrender.com"
 
-# 🤖 Bot va Dispatcher
-bot = Bot(token=BOT_TOKEN)
-dp = Dispatcher(bot)
+bot = telebot.TeleBot(BOT_TOKEN)
 
-# 🛍 Faqat bitta tugma — Magazin
-keyboard = ReplyKeyboardMarkup(resize_keyboard=True)
-keyboard.add(KeyboardButton(
-    text="🛍 Magazin",
-    web_app=WebAppInfo(url="https://baxabet04.github.io/baxaoptom_miniapp/")  # GitHub Pages versiyasi
-))
+# 🧩 Mini App tugmasi
+webAppButton = telebot.types.WebAppInfo(url="https://baxaoptom-miniapp.vercel.app")  # Frontend URL
+mainMenu = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
+mainMenu.add(telebot.types.KeyboardButton("🛍 Buyurtma berish", web_app=webAppButton))
 
-# 👋 Start komandasi
-@dp.message_handler(commands=['start'])
-async def welcome(message: types.Message):
-    await message.answer(
-        "👋 BaxaOptom botga xush kelibsiz!\n\n🛍 Magazin tugmasini bosib katalogni ko‘ring.",
-        reply_markup=keyboard
-    )
+# 🟢 Bot ishga tushganda
+@bot.message_handler(commands=['start'])
+def start(message):
+    bot.send_message(message.chat.id, "👋 Salom! BaxaOptom’ga xush kelibsiz.", reply_markup=mainMenu)
+
+# 📩 Buyurtma yuborish (Mini App’dan)
+@bot.message_handler(content_types=['web_app_data'])
+def handle_web_app(message):
+    try:
+        data = message.web_app_data.data
+        order = eval(data)  # JSON string → dict
+
+        # 🔗 Backendga yuborish
+        response = requests.post(f"{BACKEND_URL}/order", json=order)
+        if response.status_code == 200:
+            bot.send_message(message.chat.id, "✅ Buyurtma qabul qilindi!")
+        else:
+            bot.send_message(message.chat.id, "❌ Xatolik: buyurtma yuborilmadi.")
+    except Exception as e:
+        bot.send_message(message.chat.id, f"⚠️ Xatolik: {str(e)}")
 
 # 🚀 Botni ishga tushirish
-if __name__ == '__main__':
+=======
+import telebot
+import requests
+
+# 🔐 Telegram bot sozlamalari
+BOT_TOKEN = "8409191752:AAEgPddZfKIGrFHOSfBnY6OfQTCk3aRHMzo"
+ADMIN_CHAT_ID = "5167278754"  # Dostonbek — Azamov.B
+
+# 🌐 Backend URL (Render.com’dagi)
+BACKEND_URL = "https://baxaoptom-backend.onrender.com"
+
+bot = telebot.TeleBot(BOT_TOKEN)
+
+# 🧩 Mini App tugmasi
+webAppButton = telebot.types.WebAppInfo(url="https://baxaoptom-miniapp.vercel.app")  # Frontend URL
+mainMenu = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
+mainMenu.add(telebot.types.KeyboardButton("🛍 Buyurtma berish", web_app=webAppButton))
+
+# 🟢 Bot ishga tushganda
+@bot.message_handler(commands=['start'])
+def start(message):
+    bot.send_message(message.chat.id, "👋 Salom! BaxaOptom’ga xush kelibsiz.", reply_markup=mainMenu)
+
+# 📩 Buyurtma yuborish (Mini App’dan)
+@bot.message_handler(content_types=['web_app_data'])
+def handle_web_app(message):
     try:
-        print("✅ BaxaOptom bot ishga tushdi...")
-        executor.start_polling(dp, skip_updates=True)
+        data = message.web_app_data.data
+        order = eval(data)  # JSON string → dict
+
+        # 🔗 Backendga yuborish
+        response = requests.post(f"{BACKEND_URL}/order", json=order)
+        if response.status_code == 200:
+            bot.send_message(message.chat.id, "✅ Buyurtma qabul qilindi!")
+        else:
+            bot.send_message(message.chat.id, "❌ Xatolik: buyurtma yuborilmadi.")
     except Exception as e:
-        print(f"❌ Xatolik: {e}")
+        bot.send_message(message.chat.id, f"⚠️ Xatolik: {str(e)}")
+
+# 🚀 Botni ishga tushirish
+>>>>>>> 72c5b9f (Add full backend with bot.py)
+bot.polling()

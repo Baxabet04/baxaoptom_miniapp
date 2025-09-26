@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>🛒 Buyurtmalar — Admin Panel</title>
-  <link rel="stylesheet" href="admin-style.css">
+  <link rel="stylesheet" href="https://baxabet04.github.io/baxaoptom_miniapp/admin-style.css">
 </head>
 <body>
 
@@ -41,7 +41,7 @@
   </footer>
 
   <script>
-    fetch('http://127.0.0.1:5000/order-list')
+    fetch('https://baxaoptom-api.onrender.com/order-list')
       .then(res => res.json())
       .then(orders => {
         const table = document.getElementById('order-table');

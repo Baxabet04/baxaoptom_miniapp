@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sozlamalar — Admin Panel</title>
-  <link rel="stylesheet" href="admin-style.css">
+  <link rel="stylesheet" href="https://baxabet04.github.io/baxaoptom_miniapp/admin-style.css">
 </head>
 <body>
   <header class="admin-header">
@@ -53,7 +53,7 @@
 
   <script>
     // Sozlamalarni yuklash
-    fetch('http://127.0.0.1:5000/settings')
+    fetch('https://baxaoptom-api.onrender.com/settings')
       .then(res => res.json())
       .then(data => {
         document.getElementById('brand_name').value = data.brand_name;
@@ -79,7 +79,7 @@
         admin_username: document.getElementById('admin_username').value
       };
 
-      fetch('http://127.0.0.1:5000/settings/update', {
+      fetch('https://baxaoptom-api.onrender.com/settings/update', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(settings)

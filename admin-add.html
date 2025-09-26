@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>📦 Mahsulotlar — Admin Panel</title>
-  <link rel="stylesheet" href="admin-style.css">
+  <link rel="stylesheet" href="https://baxabet04.github.io/baxaoptom_miniapp/admin-style.css">
 </head>
 <body>
 
@@ -29,7 +29,7 @@
   </footer>
 
   <script>
-    fetch('http://127.0.0.1:5000/products')
+    fetch('https://baxaoptom-api.onrender.com/products')
       .then(res => res.json())
       .then(products => {
         const grid = document.getElementById('productGrid');
@@ -37,7 +37,7 @@
           const card = document.createElement('div');
           card.className = 'product-card-admin';
           card.innerHTML = `
-            <img src="images/${p.image}" alt="${p.name}">
+            <img src="https://baxabet04.github.io/baxaoptom_miniapp/images/${p.image}" alt="${p.name}">
             <h3>${p.name}</h3>
             <p><strong>💰 Narx:</strong> ${p.price.toLocaleString()} so‘m</p>
             <p><strong>🎯 Chegirma:</strong> ${p.discount}%</p>
@@ -56,7 +56,7 @@
 
     function deleteProduct(id) {
       if (!confirm("Mahsulotni o‘chirishga ishonchingiz komilmi?")) return;
-      fetch(`http://127.0.0.1:5000/products/delete/${id}`, {
+      fetch(`https://baxaoptom-api.onrender.com/products/delete/${id}`, {
         method: 'DELETE'
       })
       .then(res => res.json())

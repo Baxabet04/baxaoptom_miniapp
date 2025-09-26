@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Statistika — BaxaOptom Admin</title>
-  <link rel="stylesheet" href="admin-style.css">
+  <link rel="stylesheet" href="https://baxabet04.github.io/baxaoptom_miniapp/admin-style.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
@@ -30,17 +30,14 @@
   </footer>
 
   <script>
-    fetch('http://127.0.0.1:5000/order-list')
+    fetch('https://baxaoptom-api.onrender.com/order-list')
       .then(res => res.json())
       .then(orders => {
-        const daily = {};
-        const weekly = {};
-        const monthly = {};
-        const hourly = {};
+        const daily = {}, weekly = {}, monthly = {}, hourly = {};
 
         orders.forEach(order => {
           const date = new Date(order.timestamp);
-          const dayKey = date.toISOString().split('T')[0]; // YYYY-MM-DD
+          const dayKey = date.toISOString().split('T')[0];
           const weekKey = `Week ${getWeekNumber(date)}`;
           const monthKey = `${date.getFullYear()}-${date.getMonth() + 1}`;
           const hourKey = `${date.getHours()}:00`;

@@ -4,14 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>To‘lov — BaxaOptom</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://baxabet04.github.io/baxaoptom_miniapp/style.css">
 </head>
 <body>
 
-  <!-- 🔙 Ortga tugmasi -->
   <button class="back-btn" onclick="history.back()">⬅️ Ortga</button>
 
-  <!-- 💳 To‘lov turi tanlash -->
   <h2 class="checkout-title">To‘lov turini tanlang</h2>
 
   <div class="payment-options">
@@ -25,22 +23,18 @@
     </label>
   </div>
 
-  <!-- 💳 Click to‘lov uchun karta raqami -->
   <div id="click-details" class="payment-details">
     <p>Plastik karta raqami:</p>
     <p><strong>9860 1701 1055 3998</strong></p>
     <p>To‘lovni amalga oshirgach, “Tasdiqlash” tugmasini bosing.</p>
   </div>
 
-  <!-- 📩 Naqd to‘lov uchun ogohlantirish -->
   <div id="cash-details" class="payment-details" style="display:none;">
     <p>Naqd to‘lov tanlandi. Buyurtma haqida adminga xabar yuboriladi.</p>
   </div>
 
-  <!-- ✅ Tasdiqlash tugmasi -->
   <button class="confirm-btn" onclick="confirmPayment()">To‘lovni tasdiqlash</button>
 
-  <!-- 🧭 Pastki menyu -->
   <div class="bottom-nav">
     <a href="index.html">🏠 Bosh sahifa</a>
     <a href="category.html">📦 Katalog</a>
@@ -49,7 +43,6 @@
     <a href="profile.html">👤 Profil</a>
   </div>
 
-  <!-- 🧠 JS funksiyasi -->
   <script>
     const clickDetails = document.getElementById('click-details');
     const cashDetails = document.getElementById('cash-details');
@@ -68,13 +61,28 @@
 
     function confirmPayment() {
       const selected = document.querySelector('input[name="payment"]:checked').value;
-      if (selected === 'click') {
-        alert("Click to‘lov tasdiqlandi. Adminga xabar yuboriladi.");
-        // Telegram botga xabar yuborish backend orqali amalga oshiriladi
-      } else {
-        alert("Naqd to‘lov tanlandi. Adminga xabar yuboriladi.");
-        // Telegram botga xabar yuborish backend orqali amalga oshiriladi
-      }
+      const order = {
+        name: "Foydalanuvchi",
+        phone: "+998901234567",
+        items: ["Shim qora", "Kepka oq"],
+        size: "48",
+        payment: selected,
+        timestamp: new Date().toISOString()
+      };
+
+      fetch('https://baxaoptom-api.onrender.com/order', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(order)
+      })
+      .then(res => res.json())
+      .then(data => {
+        alert("✅ Buyurtma adminga yuborildi!");
+        window.location.href = "index.html";
+      })
+      .catch(err => {
+        alert("❌ Xatolik: " + err);
+      });
     }
   </script>
 

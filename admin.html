@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>📊 Admin Panel — Statistika</title>
-  <link rel="stylesheet" href="admin-style.css">
+  <link rel="stylesheet" href="https://baxabet04.github.io/baxaoptom_miniapp/admin-style.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
@@ -32,7 +32,7 @@
 
   <script>
     // Buyurtmalar statistikasi
-    fetch('http://127.0.0.1:5000/order-list')
+    fetch('https://baxaoptom-api.onrender.com/order-list')
       .then(res => res.json())
       .then(orders => {
         const daily = {}, weekly = {}, monthly = {}, hourly = {};
@@ -57,7 +57,7 @@
       });
 
     // Mahsulot statistikasi
-    fetch('http://127.0.0.1:5000/products/stats')
+    fetch('https://baxaoptom-api.onrender.com/products/stats')
       .then(res => res.json())
       .then(stats => {
         drawChart('categoryChart', '📁 Toifalar bo‘yicha mahsulotlar', stats.categories);

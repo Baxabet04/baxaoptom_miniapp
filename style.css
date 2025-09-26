@@ -1,29 +1,70 @@
 /* 🌐 Umumiy */
 body {
+  font-family: 'Poppins', sans-serif;
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: #ffffff;
-  color: #222;
+  padding: 0;
+  background: linear-gradient(to bottom right, #f9f9f9, #eaeaea);
+  color: #333;
+  transition: background 0.3s ease;
 }
 
-h2, h3 {
-  margin: 10px 0;
+/* 🔄 Animatsiyalar */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-button {
-  cursor: pointer;
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
 }
 
-/* 🔍 Qidiruv paneli */
-.search-bar {
-  padding: 10px;
-  background: #f5f5f5;
+/* 🧢 Header */
+header, .miniapp-header {
+  background: linear-gradient(to right, #222, #333);
+  color: #fff;
+  padding: 20px;
   text-align: center;
+  font-size: 26px;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  animation: fadeIn 0.6s ease;
+}
+
+/* 🔰 Logotip */
+.logo-container {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+  animation: fadeIn 0.8s ease;
+}
+
+.logo-img {
+  height: 44px;
+  margin-right: 12px;
+}
+
+.logo-text {
+  font-size: 1.6rem;
+  color: #333;
+  font-weight: 600;
+}
+
+/* 🧾 Qidiruv paneli */
+.search-bar {
+  padding: 16px;
+  background-color: #fff;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
 }
 
 .search-bar input {
   width: 90%;
-  padding: 10px;
+  padding: 12px;
+  font-size: 16px;
   border-radius: 8px;
   border: 1px solid #ccc;
 }
@@ -58,6 +99,11 @@ button {
   font-size: 20px;
 }
 
+.banner-text p {
+  font-size: 14px;
+  margin: 6px 0;
+}
+
 .banner-text button {
   margin-top: 8px;
   padding: 6px 12px;
@@ -65,6 +111,7 @@ button {
   color: #fff;
   border: none;
   border-radius: 6px;
+  font-size: 14px;
 }
 
 /* 🧢 Carousel */
@@ -80,169 +127,138 @@ button {
   gap: 12px;
 }
 
+/* 📦 Mahsulot kartasi */
 .product-card {
-  min-width: 140px;
-  background: #f9f9f9;
-  border-radius: 8px;
-  padding: 10px;
+  position: relative;
+  background-color: #fff;
+  border-radius: 14px;
+  overflow: hidden;
   text-align: center;
+  padding: 18px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeIn 1.2s ease;
+  min-width: 240px;
+}
+
+.product-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
 }
 
 .product-card img {
   width: 100%;
-  height: 100px;
-  object-fit: cover;
-  border-radius: 6px;
+  height: auto;
+  border-radius: 10px;
+}
+
+.product-card h3 {
+  font-size: 1.2rem;
+  margin: 14px 0 8px;
+  color: #222;
+}
+
+.product-card p {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 10px;
 }
 
 .product-card button {
-  margin-top: 6px;
-  padding: 6px 10px;
-  background: #4a90e2;
-  color: white;
+  background-color: #007b5e;
+  color: #fff;
   border: none;
-  border-radius: 6px;
-}
-
-/* 📦 Kategoriya sahifasi */
-.category-title {
-  text-align: center;
-  margin-top: 20px;
-}
-
-.product-list {
-  padding: 10px;
-}
-
-.product-item {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 16px;
-  background: #f8f8f8;
+  padding: 12px 18px;
   border-radius: 8px;
-  padding: 10px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
-.product-item img {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
+.product-card button:hover {
+  background-color: #005f47;
+  animation: pulse 0.4s ease;
+}
+
+.product-card button:active {
+  transform: scale(0.97);
+}
+
+/* 🔖 Chegirma belgisi */
+.badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background-color: #d32f2f;
+  color: #fff;
+  padding: 5px 12px;
+  font-size: 0.8rem;
   border-radius: 6px;
-}
-
-.product-info {
-  flex: 1;
-}
-
-.product-info button {
-  margin-top: 6px;
-  padding: 6px 10px;
-  background: #4a90e2;
-  color: white;
-  border: none;
-  border-radius: 6px;
-}
-
-/* 🛒 Savatcha */
-.cart-title {
-  text-align: center;
-  margin-top: 20px;
-}
-
-.cart-actions {
-  display: flex;
-  justify-content: space-around;
-  margin: 10px;
-}
-
-.cart-list {
-  padding: 10px;
-}
-
-.cart-item {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 12px;
-  background: #f0f0f0;
-  border-radius: 8px;
-  padding: 10px;
-}
-
-.cart-info {
-  flex: 1;
-}
-
-.cart-summary {
-  text-align: center;
-  margin: 20px 0;
-}
-
-.checkout-btn {
-  display: block;
-  margin: 0 auto 80px;
-  padding: 10px 20px;
-  background: #000;
-  color: white;
-  border: none;
-  border-radius: 6px;
-}
-
-/* 💳 To‘lov sahifasi */
-.checkout-title {
-  text-align: center;
-  margin-top: 20px;
-}
-
-.payment-options {
-  padding: 10px 20px;
-}
-
-.payment-details {
-  padding: 10px 20px;
-  background: #f9f9f9;
-  margin: 10px;
-  border-radius: 8px;
-}
-
-.confirm-btn {
-  display: block;
-  margin: 20px auto 80px;
-  padding: 10px 20px;
-  background: #4a90e2;
-  color: white;
-  border: none;
-  border-radius: 6px;
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
 /* 🧭 Pastki menyu */
-.bottom-nav {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background: #fff;
-  border-top: 1px solid #ccc;
+.bottom-menu, .miniapp-footer nav {
   display: flex;
   justify-content: space-around;
-  padding: 10px 0;
-  z-index: 999;
+  padding: 16px;
+  background-color: #fff;
+  border-top: 1px solid #ddd;
+  animation: fadeIn 1.4s ease;
 }
 
-.bottom-nav a {
+.bottom-menu a, .miniapp-footer a {
   text-decoration: none;
-  color: #666;
-  font-size: 14px;
+  color: #555;
+  font-size: 1rem;
+  transition: color 0.2s ease;
 }
 
-/* 🔙 Ortga tugmasi */
-.back-btn {
-  position: fixed;
-  top: 10px;
-  left: 10px;
-  background: #eee;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 6px;
-  font-size: 16px;
-  z-index: 1000;
+.bottom-menu a.active, .miniapp-footer a.active {
+  color: #000;
+  font-weight: bold;
+}
+
+/* 📱 Mobil moslik */
+@media screen and (max-width: 430px) {
+  .search-bar input {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .product-card {
+    min-width: 180px;
+    padding: 14px;
+  }
+
+  .product-card h3 {
+    font-size: 1rem;
+  }
+
+  .product-card p {
+    font-size: 0.9rem;
+  }
+
+  .product-card button {
+    font-size: 0.9rem;
+    padding: 10px 14px;
+  }
+
+  .bottom-menu a {
+    font-size: 0.9rem;
+  }
+
+  .banner-text h2 {
+    font-size: 18px;
+  }
+
+  .banner-text p {
+    font-size: 13px;
+  }
+
+  .banner-text button {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
 }

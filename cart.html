@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Savat — BaxaOptom</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://baxabet04.github.io/baxaoptom_miniapp/style.css">
 </head>
 <body>
 
@@ -21,7 +21,7 @@
   </div>
 
   <!-- 📦 Mahsulotlar ro‘yxati -->
-  <div class="cart-list">
+  <div class="cart-list" id="cartList">
     <div class="cart-item">
       <input type="checkbox">
       <div class="cart-info">
@@ -31,14 +31,12 @@
         <p>Soni: 1 dona</p>
       </div>
     </div>
-
-    <!-- Yana mahsulotlar qo‘shiladi -->
   </div>
 
   <!-- 💰 Umumiy narx -->
   <div class="cart-summary">
-    <p>1 ta mahsulot: 199,000 UZS</p>
-    <p>Umumiy narx: 199,000 UZS</p>
+    <p id="itemCount">1 ta mahsulot: 199,000 UZS</p>
+    <p id="totalPrice">Umumiy narx: 199,000 UZS</p>
   </div>
 
   <!-- 💳 To‘lovga o‘tish -->
@@ -60,8 +58,23 @@
     }
 
     function deleteSelected() {
-      alert("Tanlangan mahsulotlar o‘chirildi");
-      // Keyinchalik script.js orqali real o‘chirish yoziladi
+      const items = document.querySelectorAll('.cart-item');
+      items.forEach(item => {
+        const checkbox = item.querySelector('input[type="checkbox"]');
+        if (checkbox.checked) {
+          item.remove();
+        }
+      });
+      alert("✅ Tanlangan mahsulotlar o‘chirildi");
+      updateSummary();
+    }
+
+    function updateSummary() {
+      const items = document.querySelectorAll('.cart-item');
+      const count = items.length;
+      const price = count * 199000;
+      document.getElementById('itemCount').textContent = `${count} ta mahsulot: ${price.toLocaleString()} UZS`;
+      document.getElementById('totalPrice').textContent = `Umumiy narx: ${price.toLocaleString()} UZS`;
     }
   </script>
 
